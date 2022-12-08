@@ -1,49 +1,60 @@
 // var APIkey = "5e0fc062533663404b1acd91a8cbb20b";
-// // https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
+// // // https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
 
 // var cityInputEl = $('#city-input');
 // var searchBtn = $('#search-button');
 // var currentCity;
 
-// function getCoordinates () {
-//     // https://openweathermap.org/forecast5#name5
-//     var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=imperial&appid=${APIkey}`;
-//     var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
+// function getWeather(data) {
 
-//     // https://api.openweathermap.org/data/2.5/weather?q=$London&units=metric&appid=5e0fc062533663404b1acd91a8cbb20b
-
-//     fetch(requestUrl)
-//       .then(function (response) {
+//   var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIkey}`
+//   fetch(requestUrl)
+//       .then(function(response) {
 //           return response.json();
 //       })
-//       .then(function(data) {
-//         console.log(data);
+//     }
 
-//         var cityInfo = {
-//             city: currentCity,
-//             lon: data.coord.lon,
-//             lat: data.coord.lon
-//         }
+// function getCoordinates() {
+//   // https://openweathermap.org/forecast5#name5
+//   var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=imperial&appid=${APIkey}`;
+//   var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
 
-//         storedCities.push(cityInfo);
-//         localStorage.setItem("cities", JSON.stringify(storedCities));
-//       })
-//     return;
+//   // https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=5e0fc062533663404b1acd91a8cbb20b
+
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       if (response.status >= 200 && response.status <= 299) {
+//         return response.json();
+//       } else {
+//         throw Error(response.statusText);
+//       }
+//     })
+//     .then(function (data) {
+
+//       var cityInfo = {
+//         city: currentCity,
+//         lon: data.coord.lon,
+//         lat: data.coord.lat
+//       }
+
+//       storedCities.push(cityInfo);
+//       localStorage.setItem("cities", JSON.stringify(storedCities));
+
+//       displaySearchHistory();
+
+//       return cityInfo;
+//     })
+//     .then(function (data) {
+//       getWeather(data);
+//     })
+//   return;
 // }
 
-// function handleCityFormSubmit (event) {
-//     event.preventDefault();
 
-//     city = cityInputEl.val().trim();
-//     console.log(city);
-//     cityInputEl.textContent = '';
-//     currentCity = cityInputEl.val().trim();
-//     console.log(currentCity);
 
-//     getCoordinates();
-// }
 
-// searchBtn.on("click", handleCityFormSubmit);
+
+
 
 var input = document.querySelector('.input_text');
 var main = document.querySelector('#name');
